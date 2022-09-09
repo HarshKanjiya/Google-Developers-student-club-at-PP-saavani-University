@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
-import {ReactComponent as GdscLogo} from '../images/logo.svg'
+import flyer from '../images/1.png';
+import downloadBtn from '../images/1.png';
 import facebooklogo from '../images/facebook_logo.png';
 import instagramlogo from '../images/instagram_logo.png';
 import twitterlogo from '../images/youtube_logo.png';
@@ -35,13 +36,15 @@ const Home = () => {
                 </div>
             </Header>
 
-            <Arrow className='arrow' >
-                <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_pojnro4h.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>    
+            <Arrow className='arrow'  >
+                <a href='#IDMotive'>
+                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_pojnro4h.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>    
+                </a>
             </Arrow>
 
         {/* motive */}
-
-        <Motive>
+        <div id='IDMotive'></div>
+        <Motive >
             <MotiveHead>
             our Focus
             </MotiveHead>
@@ -53,13 +56,28 @@ const Home = () => {
             </MotiveBody>
         </Motive>
         {/* events */}
-            <EventsWrapper id='IDEvents'>
+        <div id='IDEvents'></div>
+            <EventsWrapper >
 
                 <EventsHead>
                     <p>Events</p>
                 </EventsHead>
                 <EventsBody>
-                    <p>No Upcoming Events</p>
+                    <table>
+                        <tr>
+                            <td>Date</td>
+                            <td>Name</td>
+                            <td>More Info</td>
+                        </tr>
+                        <tr>
+                            <td>15Th Sept, 2022</td>
+                            <td>Kahoot!</td>
+                            <td style={{display:'flex',alignItems:'center',justifyContent:'center'}} ><a href={ flyer } download>
+                            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_nikmvucu.json"  background="transparent"  speed="1"  style={{width: '64px', height: '64px'}}  loop  autoplay></lottie-player>
+                                </a></td>
+                        </tr>
+                        
+                    </table>
                 </EventsBody>
 
             </EventsWrapper>
@@ -78,7 +96,8 @@ const Home = () => {
             
 
         {/* Gallery */}
-        <GalleryWrapper id='IDGallery'>
+        <div id='IDGallery'></div>
+        <GalleryWrapper >
             <GalleryHead>
                 <p>Gallery</p>
             </GalleryHead>
@@ -90,7 +109,8 @@ const Home = () => {
 
 
         {/* the Team */}
-        <TeamWrapper id='IDTeam' >
+        <div id='IDTeam' ></div>
+        <TeamWrapper >
             <TeamHead>
                 <p>Get to Knnow The Team</p>
             </TeamHead>
@@ -207,6 +227,10 @@ const Arrow = styled.div`
 height: 100px;
 width: 100%;
 margin-bottom: 100px;
+
+@media (max-width: 768px) {
+    margin-top: 100px;
+}
 `
 
 const Motive = styled.div`
@@ -248,6 +272,20 @@ const EventsBody = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    table{
+        text-align: center;
+        width: 100%;
+        background: linear-gradient(120deg,#ffffff22,rgba(255, 255, 255, 0));
+        border: 1px solid #ffffff;
+        border-radius: 7px;
+        margin: 0 20px;
+        
+      
+            
+            
+        
+    }
+
 `
 
 const LeaderBoardWrapper = styled.div`

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import {ReactComponent as GdscLogo} from '../images/logo.svg'
 
-const NavBar = ({tools}) => {    
+const NavBar = ({tools}) => {  
+    const navigator = useNavigate();  
     return ( 
         <>
         <Master>
@@ -16,12 +17,16 @@ const NavBar = ({tools}) => {
             </Home>
             </Link>
         {
-            tools &&
+            tools ?
             <Tools>
                 <a href="#IDEvents" >Events</a>
                 <a href="#IDGallery">Gallery</a>
                 <a href="#IDTeam">The Team</a>
                 <a href="#IDcontectUs" >Contact us</a>              
+            </Tools>
+            :
+            <Tools>
+                <button onClick={() => navigator(-1)}> go back</button>
             </Tools>
         }
         </Master>
@@ -78,6 +83,15 @@ a{
 @media (max-width: 768px) {
     visibility: hidden;
 }
+button {
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    font-size: 15px;
+    background: linear-gradient(45deg, #ec9819, #ff0000);
+    border: 0px solid;
+    color: aliceblue;
+  }
 
 `
 const PpsuWrapper = styled.div`
