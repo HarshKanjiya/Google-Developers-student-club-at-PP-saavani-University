@@ -35,13 +35,17 @@ export default NavBar;
 
 
 const Master = styled.div`
+position: fixed;
+z-index: 99;
 height: fit-content;
 width: 100%;
 display: flex;
-margin:  10px 0;
+padding:  10px 0 0 0;
 align-items: center;
 justify-content: space-between;
 overflow-x: hidden;
+backdrop-filter: blur(15px);
+background-color: rgba(0, 0, 0, 0.055);
 
 
 

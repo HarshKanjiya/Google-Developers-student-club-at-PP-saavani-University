@@ -21,7 +21,6 @@ const Home = () => {
             <Header>
                 <div className='content-home-wrapper'>
                     <div className='content-home'>
-                        {/* <GdscLogo className="GdscLogo" /> */}
                         <img src={gdscPpsuLogo} className="GdscLogo" />
                         <br/>
                         <div className='Hero-txt'>
@@ -163,17 +162,17 @@ align-items: center;
     flex-direction: column;
     position: relative;
     .GdscLogo{
-        height: 200px;
+        height: 500px;
         width: auto;
         position: absolute;
-        left: -100px;
-        top: 0px;
+        left: -250px;
+        top: -140px;
         z-index: -1;
     }
 
     .Hero-txt{
         backdrop-filter: blur(3px);
-        padding: 5px 20px;
+        padding: 10px 20px;
         margin-top: -12px;
         border-radius: 11px;
         background: linear-gradient(120deg,#ffffff22,rgba(255, 255, 255, 0));
