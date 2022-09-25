@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Branches from "./base/branches";
 import NavBar from "./navBar";
+import { motion } from "framer-motion";
 
 import anchalRajput from '../images-members/anchal rajput.png' 
 import anuragBhanderi from '../images-members/anurag bhanderi.png'
@@ -25,14 +26,19 @@ import savanGangani from '../images-members/savan gangani.png'
 import shubhamKothiya from '../images-members/shubham kothiya.png'
 import vivekVasoya from '../images-members/vivek vasoya.png'
 import yashBhadiyadra from '../images-members/yash bhadiyadra.png'
-import vivekMunjani from '../images-members/harsh kanjiya.png'
+import vivekMunjani from '../images-members/vinit munjani.png'
 
 const TeamPage = () => {
     return ( 
         <>
-        <NavBar/>
-        <Master>
+        <NavBar />
+        <Master
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:0.7,delay:.4}}
+        >
 
+        <input type='button' autoFocus/>
             <Branches 
                 Team='Team Leader' 
                 memberNames = {['Shubham Kothiya']}
@@ -87,7 +93,7 @@ const TeamPage = () => {
                 />
             <Branches
                 Team='Non Technical Members'
-                memberNames = {['Ashms Chettiveetil','jenish Lad','Harshiddh Savani',]}
+                memberNames = {['Ashmas Chettiveettil','jenish Lad','Harshiddh Savani',]}
                 categories = {['Volunteer Head','Graphics Design','Finence manager']}
                 member0={ ashmsChettiveetil } 
                 member1={ jenishLad } 
@@ -95,10 +101,10 @@ const TeamPage = () => {
             />
             <Branches
                 Team = {false}
-                memberNames = {['kishan Prajapati','kishan Prajapati','kishan Prajapati',]}
+                memberNames = {['Henil Patel','Vinit Munjani','Rohan Tank',]}
                 categories = {['Social Media','Video Editor','Photographer']}
                 member0={ henilPatel } 
-                member1={ harshKanjiya } 
+                member1={ vivekMunjani } 
                 member2={ rohanTank } 
             />
             <Branches
@@ -106,7 +112,7 @@ const TeamPage = () => {
             memberNames = {['Dimpy Kathvani']}
             categories = {['Content Creator']}
             member0 = { dimpyKathvani }
-            />
+            /> 
             
 
         <div style={{ height:'50px' , color:'#111111'}} >.</div>
@@ -118,13 +124,16 @@ const TeamPage = () => {
  
 export default TeamPage;
 
-const Master = styled.div`
-/* padding-top: 50%; */
-height: 90vh;
+
+const Master = styled(motion.div)`
 width: 100vw;
 display: flex;
-align-items: center;
 flex-direction: column;
-
-
+align-items: center;
+input{
+    height: 20px;
+    width: 20px;
+    background-color: rgba(0,0,0,0);
+    opacity: 0;
+}
 `

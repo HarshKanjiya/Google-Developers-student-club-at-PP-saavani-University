@@ -1,12 +1,14 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 const MemberCard = ({member,image}) => {
 
-    console.log('member', member)
-    console.log('image', image)
     return ( 
         <>
-            <Master>
+            <Master
+            initial={{x:50,opacity:0}}
+            whileInView={{x:0,opacity:1}}
+            transition={{delay:0.2}}
+            >
                 <img src={image} alt={member} />
                 <p>{member}</p>
             </Master>
@@ -17,10 +19,11 @@ const MemberCard = ({member,image}) => {
 export default MemberCard;
 
 
-const Master = styled.div`
+const Master = styled(motion.div)`
 height: 280px;
 width: 220px;
 background-color: rgba(240, 248, 255, 0.295);
+box-shadow: 3px 3px 11px rgba(0, 0, 0, .15);
 display: flex;
 justify-content: center;
 align-items: center;

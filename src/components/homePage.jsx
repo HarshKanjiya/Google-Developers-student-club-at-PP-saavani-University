@@ -1,50 +1,88 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-
-import flyer from '../images/1.png';
-import downloadBtn from '../images/1.png';
-import facebooklogo from '../images/facebook_logo.png';
-import instagramlogo from '../images/instagram_logo.png';
-import twitterlogo from '../images/youtube_logo.png';
-import youtubelogo from '../images/linkedIn_logo.png';
-import linkedInklogo from '../images/twitter_logo.png';
+import { motion } from 'framer-motion';
 import gdscPpsuLogo from '../images/gdsc-ppsu-logo.png';
+import closeBtn from '../images/closeSideBar.png';
 import NavBar from './navBar';
+import { useState } from 'react';
+import Footer from './Footer';
 
+const variant = {
+    show:{x:['100%','0%']},
+    hide:{x:['0%','100%']}
+}
 
 const Home = () => {
+    const [sidebar, setSidebar ] = useState(false);
     return ( 
         <>
-        <NavBar tools={true} />
+        <NavBar tools={true} sideBar={true} setSidebar = { setSidebar } />
+        
+            <SideMenu
+            initial={{x:400}}
+                animate={sidebar ? variant.show :variant.hide}
+                transition={{stiffness:40,duration:.1}}
+            >
+                <div className='closeSideBar'>
+                    <img src={closeBtn} onClick={()=>setSidebar(false)} />
+                </div>
+            <div className="navis">
+                <a href="#IDEvents"  onClick={()=>setSidebar(false)}>Events</a>
+                <a href="#IDTeam"  onClick={()=>setSidebar(false)}>The Team</a>
+                <a href="#IDcontectUs"  onClick={()=>setSidebar(false)}>Contact us</a>   
+            </div>
+        </SideMenu>
+        
         <Master>
             
             {/* hero */}
-            <Header>
-                <div className='content-home-wrapper'>
+            <Header
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            >
+                <div 
+                className='content-home-wrapper'
+                >
                     <div className='content-home'>
-                        <img src={gdscPpsuLogo} className="GdscLogo" />
+                        <motion.img 
+                        initial={{opacity:0}}
+                        animate={{opacity:1}}
+                        transition={{duration:.9,delay:1,ease:'easeInOut'}}
+                        src={gdscPpsuLogo} className="GdscLogo" />
                         <br/>
                         <div className='Hero-txt'>
-                        <p>At GDSC PPSU,<br/> our aim is to learn and teach.<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Developers, designers, managers and learners come together under one roof to create a community which inspires thousands.</p>
+                        <p>We are GDSC P P Savani University,
+                            <br/> our aim is to Learn and Grow with each other. <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Developers, designers, managers and learners come together under one roof to create a community which inspires thousands.</p>
                         <p>Join Us!</p>
                         </div>
                     </div>
                 </div>
 
-                <div className='anim'>
+                <motion.div 
+                className='anim'
+                initial={{y:'-100%',opacity:0}}
+                animate={{y:0,opacity:1}}
+                transition={{duration:1,delay:1,ease:'easeInOut',type:'spring',stiffness:80}}>
                     <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_ndj9fzcd.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>
-                </div>
+                </motion.div>
             </Header>
 
             <Arrow className='arrow'  >
-                <a href='#IDMotive'>
+                <motion.a
+                href='#IDMotive'
+                initial={{opacity:0}}
+                whileInView={{opacity:1}}
+                transition={{duration:1,delay:1}}>
                     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_pojnro4h.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>    
-                </a>
+                </motion.a>
             </Arrow>
 
         {/* motive */}
         <div id='IDMotive'></div>
-        <Motive >
+        <Motive 
+        initial={{opacity:0}}
+        whileInView={{opacity:1}}
+        transition={{duration:1}}>
             <MotiveHead>
             our Focus
             </MotiveHead>
@@ -57,13 +95,18 @@ const Home = () => {
         </Motive>
         {/* events */}
         <div id='IDEvents'></div>
-            <EventsWrapper >
+            <EventsWrapper
+            initial={{opacity:0}}
+            whileInView={{opacity:1}}
+            transition={{duration:1}} >
 
                 <EventsHead>
-                    <p>Events</p>
+                    <p>upcoming Events</p>
                 </EventsHead>
                 <EventsBody>
                     <table>
+                        <tbody>
+
                         <tr>
                             <td>Date</td>
                             <td>Name</td>
@@ -71,48 +114,27 @@ const Home = () => {
                         </tr>
                         <tr>
                             <td>15Th Sept, 2022</td>
-                            <td>Kahoot!</td>
-                            <td style={{display:'flex',alignItems:'center',justifyContent:'center'}} ><a href={ flyer } download>
-                            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_nikmvucu.json"  background="transparent"  speed="1"  style={{width: '64px', height: '64px'}}  loop  autoplay></lottie-player>
-                                </a></td>
+                            <td>quiz Kahoot!</td>
+                            <td style={{display:'flex',alignItems:'center',justifyContent:'center'}} >
+                            
+                                </td>
                         </tr>
+                        </tbody>
                         
                     </table>
                 </EventsBody>
 
             </EventsWrapper>
 
-        {/* leaderboard */}
-        <LeaderBoardWrapper>
-
-            <LeaderBoardHead>
-                <p>Leaderboard</p>
-            </LeaderBoardHead>
-            <LeaderBoardbody>
-            <p>No Data Uploaded</p>
-            </LeaderBoardbody>
-
-        </LeaderBoardWrapper>
-            
-
-        {/* Gallery */}
-        <div id='IDGallery'></div>
-        <GalleryWrapper >
-            <GalleryHead>
-                <p>Gallery</p>
-            </GalleryHead>
-            <GalleryBody>
-                <p>a place where Events transforms into Memories is called Gallery </p>
-            </GalleryBody>
-            <button className='GalleryBtn'><Link to='gallery'>Gallery</Link></button>
-        </GalleryWrapper>
-
 
         {/* the Team */}
         <div id='IDTeam' ></div>
-        <TeamWrapper >
+        <TeamWrapper
+        initial={{opacity:0}}
+        whileInView={{opacity:1}}
+        transition={{duration:1}} >
             <TeamHead>
-                <p>Get to Knnow The Team</p>
+                <p>Get to Know The Team</p>
             </TeamHead>
             <TeamBody>
                 <p>a team filled with</p>
@@ -121,29 +143,21 @@ const Home = () => {
                     <li>gradients loving designers </li> 
                     <li>machine like working managers</li>    
             </TeamBody>
-            <button className='TeamBtn'><Link to='team'>Team</Link></button>
+            <motion.button
+            className='TeamBtn'
+            whileHover={{scale:1.1}}
+            whileTap={{scale:1}}
+            ><Link to='team'>Team</Link></motion.button>
 
         </TeamWrapper>
 
-        <ContectUs id='IDcontectUs'>
-            <hr className='contextUs-TopLine' />
-            <ContectUsWrapper>
-                <ContectUsBody>
-                    <ContectUsBodyHead>
-                        Contect Us
-                    </ContectUsBodyHead>
-                    <ContectUsBodyLogos>
-                        <img src={ facebooklogo } className='facebookLogo' style={{ height:'50px' }} />
-                        <img src={ instagramlogo } className='instagramLogo' style={{ height:'50px' }} />
-                        <img src={ linkedInklogo } className='linkedInLogo' style={{ height:'50px' }} />
-                        <img src={ youtubelogo } className='linkedInLogo' style={{ height:'50px' }} />
-                        <img src={ twitterlogo } className='youtubeLogo' style={{ height:'50px' }} />
-                    </ContectUsBodyLogos>
-                </ContectUsBody>
-                <ContectUsAnim className='ContectUsAnimDiv'>
-                <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_lstnp9p3.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>
-                </ContectUsAnim>
-            </ContectUsWrapper>
+        <ContectUs id='IDcontectUs'
+        initial={{opacity:0}}
+        whileInView={{opacity:1}}
+        transition={{duration:1}}
+        >
+            <hr className='' />
+           <Footer/>
         </ContectUs>
         </Master>
         </>
@@ -154,17 +168,44 @@ export default Home;
 
 
 const Master = styled.div`
-height: 100vh;
 width: 100vw;
 display: flex;
 flex-direction: column;
 color: aliceblue;
 `
-const Header = styled.div`
+const SideMenu = styled(motion.div)`
+z-index: 999;
+position: fixed;
+height: 100%;
+width: 200px;
+right: 0;
+top: 0;
+background: linear-gradient( #222222,#000000) ;
+
+.closeSideBar{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    img{
+        height: 30px;
+    }
+}
+.navis{
+padding: 20px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+gap: 25px;
+}
+
+`
+const Header = styled(motion.div)`
 height: 90vh;
 width: 100vw;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 
 .content-home-wrapper{
@@ -191,11 +232,14 @@ align-items: center;
     }
 
     .Hero-txt{
-        backdrop-filter: blur(3px);
+        backdrop-filter: blur(8px);
+        box-shadow: -2px -2px 11px rgba(255, 255, 255, .09),3px 3px 11px rgba(0, 0, 0, .15);
         padding: 10px 20px;
         margin-top: -12px;
         border-radius: 11px;
-        background: linear-gradient(120deg,#ffffff22,rgba(255, 255, 255, 0));
+        border-top: 1px solid #acacac32;
+        border-left: 1px solid #acacac32;
+        background: linear-gradient(-45deg,rgba(255, 255, 255, 0.089),rgba(255, 255, 255, 0));
     }
 }
 
@@ -233,7 +277,7 @@ margin-bottom: 100px;
 }
 `
 
-const Motive = styled.div`
+const Motive = styled(motion.div)`
 display: flex;
 justify-content: center;
 align-items: center;
@@ -254,7 +298,7 @@ text-align: center;
 }
 `
 
-const EventsWrapper = styled.div`
+const EventsWrapper = styled(motion.div)`
     width: calc(100vw - 100px);
     height: auto;
     margin:50px;
@@ -276,63 +320,22 @@ const EventsBody = styled.div`
         text-align: center;
         width: 100%;
         background: linear-gradient(120deg,#ffffff22,rgba(255, 255, 255, 0));
-        border: 1px solid #ffffff;
+        box-shadow: 3px 3px 11px rgba(0, 0, 0, .15);
         border-radius: 7px;
         margin: 0 20px;
         
       
-            
+        td{
+            padding:13px 0 ;
+        }
             
         
     }
 
 `
 
-const LeaderBoardWrapper = styled.div`
-    width: calc(100vw - 100px);
-    height: auto;
-    margin:50px;
-    border: 2px solid #313131;
-    border-radius: 11px ;
-`
-const LeaderBoardHead = styled.div`
-    margin: 20px;
- `
-const LeaderBoardbody = styled.div`
-    min-height: 200px;
-    margin: 0 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
-const GalleryWrapper = styled.div`
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-gap: 30px;
-margin: 50px;
-
-.GalleryBtn{
-    height: 40px;
-    width: 150px;
-    border-radius: 20px;
-    font-size: 15px;
-    background: linear-gradient(45deg, #3645CC, #FF0000);
-    border: 0px solid;
-    color: aliceblue;
-
-}
-`
-
-const GalleryHead = styled.div`
-`
-
-const GalleryBody = styled.div`
-`
-
-const TeamWrapper = styled.div`
+const TeamWrapper = styled(motion.div)`
 display: flex;
 justify-content: center;
 flex-direction: column;
@@ -356,65 +359,16 @@ const TeamHead = styled.div``
 
 const TeamBody = styled.div``
 
-const ContectUs = styled.div`
-margin: 50px;
-
+const ContectUs = styled(motion.div)`
+margin: 0 30px;
+.contextUs-TopLine{
+    margin: 0 50px;
+}
 
 @media (max-width: 768px) {
     flex-direction: column;
+    
 }
 
 
-`
-
-const ContectUsWrapper = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: row;
-
-@media (max-width:768px) {
-    .ContectUsAnimDiv{
-        visibility: hidden;
-    }
-    margin-top: -40px ;
-}
-`
-const ContectUsBody = styled.div`
-flex: 1.2;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-
-`
-const ContectUsBodyHead = styled.div`
-height: 100%;
-width: 100%;
-margin-left: 50px;
-`
-const ContectUsBodyLogos = styled.div`
-display: flex;
-margin: 40px;
-gap: 10px;
-
-.facebookLogo{
-    filter: drop-shadow(0 0 11px #348dc48d) ;
-}
-.instagramLogo{
-    filter: drop-shadow(0 0 11px #ff329f88);
-}
-.linkedInLogo{
-    filter: drop-shadow(0 0 11px #23f8ff83);
-}
-.twitterLogo{
-    filter: drop-shadow(0 0 11px #00eeff7a);
-}
-.youtubeLogo{
-    filter: drop-shadow(0 0 11px #ff171781);
-}
-`
-const ContectUsAnim = styled.div`
-height: 40vh;
-flex:0.8
 `

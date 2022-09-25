@@ -1,33 +1,42 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import {ReactComponent as GdscLogo} from '../images/logo.svg'
-
-const NavBar = ({tools}) => {  
+import { motion } from "framer-motion";
+import GdscLogo from '../images/gdscLogo.png'
+import Menu from '../images/menu.png'
+const NavBar = ({tools, sideBar, setSidebar }) => {  
     const navigator = useNavigate();  
     return ( 
         <>
         <Master>
             <Link to='/'>
             <Home>
-                <GdscLogo className="GdscLogo" />
-                <PpsuWrapper>
-                    <p> P P SAVANI UNIVERSITY</p>
-                </PpsuWrapper>
+                {/* <GdscLogo className="GdscLogo" /> */}
+                <LogoWrapper >
+                    <img  src={GdscLogo} style={{height:40}} />
+                </LogoWrapper>
             </Home>
             </Link>
         {
             tools ?
+            
             <Tools>
                 <a href="#IDEvents" >Events</a>
-                <a href="#IDGallery">Gallery</a>
                 <a href="#IDTeam">The Team</a>
                 <a href="#IDcontectUs" >Contact us</a>              
             </Tools>
             :
             <Tools>
-                <button onClick={() => navigator(-1)}> go back</button>
+                <motion.button 
+                whileHover={{scale:1.1}}
+                whileTap={{scale:1}}
+                onClick={() => navigator(-1)}> go back</motion.button>
             </Tools>
+        }
+        {
+            sideBar &&
+            <SideBar onClick={()=> setSidebar(true) } >
+                <img src={Menu}/>
+            </SideBar>
         }
         </Master>
         </>
@@ -45,12 +54,13 @@ z-index: 99;
 height: fit-content;
 width: 100%;
 display: flex;
-padding:  10px 0 0 0;
+padding:  10px ;
 align-items: center;
 justify-content: space-between;
 overflow-x: hidden;
 backdrop-filter: blur(15px);
 background-color: rgba(0, 0, 0, 0.055);
+overflow: hidden;
 
 
 
@@ -68,13 +78,13 @@ margin: 0 10px;
 
 const Tools = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     flex-direction: row;
     color: #f0f8ffbc;
-    gap: 15px;
+    gap: 35px;
     margin: 0 40px;
-
+    width: 100%;
 a{
     text-decoration: none;
     color: aliceblue;
@@ -83,6 +93,7 @@ a{
 @media (max-width: 768px) {
     visibility: hidden;
 }
+
 button {
     height: 40px;
     width: 150px;
@@ -94,14 +105,21 @@ button {
   }
 
 `
-const PpsuWrapper = styled.div`
-
+const LogoWrapper = styled.div`
 display: flex;
-margin: 0px 47px;
 justify-content: start;
-margin-top: -8px;
-color: #636363;
-font-size: 0.8rem;
-font-weight: 500;
-letter-spacing: 1.5px;
+align-items: center;
+margin: 0;
+`
+const SideBar = styled.div`
+position: absolute;
+right:30px;
+
+@media (min-width: 768px) {
+    visibility: hidden;
+}
+img{
+    height: 30px;
+    width: auto;
+}
 `

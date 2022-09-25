@@ -3,7 +3,7 @@ import MemberCard from "./memberCard";
 import MemberCard2 from "./memberCard2";
 
 const Branches = ({Team,memberNames,categories,member0,member1,member2}) => {
-    console.log(categories,Team)
+    
     return ( 
         <Wrapper>
         {
