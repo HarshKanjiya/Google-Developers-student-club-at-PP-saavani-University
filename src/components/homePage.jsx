@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
+import flyer from '../images/flyer.jpeg'
 import gdscPpsuLogo from '../images/gdsc-ppsu-logo.png';
 import closeBtn from '../images/closeSideBar.png';
 import NavBar from './navBar';
@@ -104,24 +106,7 @@ const Home = () => {
                     <p>upcoming Events</p>
                 </EventsHead>
                 <EventsBody>
-                    <table>
-                        <tbody>
-
-                        <tr>
-                            <td>Date</td>
-                            <td>Name</td>
-                            <td>More Info</td>
-                        </tr>
-                        <tr>
-                            <td>15Th Sept, 2022</td>
-                            <td>quiz Kahoot!</td>
-                            <td style={{display:'flex',alignItems:'center',justifyContent:'center'}} >
-                            
-                                </td>
-                        </tr>
-                        </tbody>
-                        
-                    </table>
+                    <img src={flyer} />
                 </EventsBody>
 
             </EventsWrapper>
@@ -304,7 +289,7 @@ const EventsWrapper = styled(motion.div)`
     margin:50px;
     border: 2px solid #313131;
     border-radius: 11px ;
-
+    overflow: hidden;
 `
 const EventsHead = styled.div`
     margin: 20px;
@@ -312,24 +297,13 @@ const EventsHead = styled.div`
 `
 
 const EventsBody = styled.div`
-    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    table{
-        text-align: center;
-        width: 100%;
-        background: linear-gradient(120deg,#ffffff22,rgba(255, 255, 255, 0));
-        box-shadow: 3px 3px 11px rgba(0, 0, 0, .15);
-        border-radius: 7px;
-        margin: 0 20px;
-        
-      
-        td{
-            padding:13px 0 ;
-        }
-            
-        
+    width: 100%;
+    background-color: aliceblue;
+    img{
+        width: inherit;
     }
 
 `
